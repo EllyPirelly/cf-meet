@@ -25,13 +25,13 @@ This PWA has been built as a task for Achievement 4 in [Career Foundry's Full-St
   - must be monitored using an online monitoring tool
 
 ### Features
-In this Meet APP - TODO
-- the user is able to
-  - see a list of upcoming events by input/query of a city name
-  - specify the number of events to be shown
-  - see a list of summerized events
-  - see a list of detailed events
-  - see a data visualization
+With this Meet APP, the user is able to
+- filter events by city name
+- specify the number of events shown
+- show/hide event details
+- use the app when offline
+- add an app shortcut to the home screen
+- view a chart showing the number of upcoming events by city
 
 ### Languages, Libraries, Frameworks, Tools
 - HTML
