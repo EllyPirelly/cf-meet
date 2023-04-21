@@ -2,18 +2,13 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
 
-/**
- * SCOPES allows you to set access levels; this is set to read only for now because you don't have access rights to update the calendar yourself.
- * For more info, check out the SCOPES documentation at this link: https://developers.google.com/identity/protocols/oauth2/scopes
- */
+// set access levels
+// any scopes passed must be enabled in the "OAuth consent screen" settings in your project on your Google Console
+// is set to read only intentionally to NO access rights to update the calendar
+// more info: https://developers.google.com/identity/protocols/oauth2/scopes
 const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
-/**
- * Credentials are values required to get access to your calendar.
- * If you see "process.env" this means the value is in the "config.json" file.
- * This is a best practice as it keeps your API secrets hidden.
- * Please remember to add "config.json" to your ".gitignore" file.
- */
+// values that google needs to generate an authentication URL to access google calendar api
 const credentials = {
   client_id: process.env.CLIENT_ID,
   project_id: process.env.PROJECT_ID,
@@ -25,23 +20,21 @@ const credentials = {
   redirect_uris: ["https://ellypirelly.github.io/cf-meet/"],
   javascript_origins: ["https://ellypirelly.github.io", "http://localhost:3000"],
 };
+
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
+
+// create a new instance of oAuth2Client for each request (!)
 const oAuth2Client = new google.auth.OAuth2(
   client_id,
   client_secret,
   redirect_uris[0]
 );
 
-/**
- * The first step in the OAuth process is to generate a URL so users can log in with Google and be authorized to see your calendar events data.
- * After logging in, they’ll receive a code as a URL parameter.
- */
+// generate an authorization URL
 module.exports.getAuthURL = async () => {
-  /**
-   * Scopes array passed to the `scope` option.
-   * Any scopes passed must be enabled in the "OAuth consent screen" settings in your project on your Google Console.
-   * Also, any passed scopes are the ones users will see when the consent screen is displayed to them.
-   */
+
+  // use the instance stored in oAuth2Client
+  // call `generateAuthUrl` on it and pass `access_type` and `scope`
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
@@ -57,4 +50,48 @@ module.exports.getAuthURL = async () => {
       authUrl: authUrl,
     }),
   };
+};
+
+// generate an access token
+module.exports.getAccessToken = async (event) => {
+
+  // create a new instance of oAuth2Client for each request (!)
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+
+  // use code form getAuthURL
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
+
+  // for each new oAuth2Client you need to return a promise
+  return new Promise((resolve, reject) => {
+    oAuth2Client.getToken(code, (err, token) => {
+      // exit early on error
+      if (err) {
+        return reject(err);
+      }
+      return resolve(token);
+    });
+  })
+    // if successful token will be returned
+    .then((token) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+        body: JSON.stringify(token),
+      };
+    })
+    // if not successful error will be returned
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err),
+      };
+    });
 };
