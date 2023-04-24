@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
+// const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
 
 // set access levels
@@ -91,6 +91,69 @@ module.exports.getAccessToken = async (event) => {
       console.error(err);
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+        body: JSON.stringify(err),
+      };
+    });
+};
+
+// calendar events access via previous token
+module.exports.getCalendarEvents = async (event) => {
+
+  // create a new instance of oAuth2Client for each request (!)
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+
+  oAuth2Client.setCredentials({ access_token });
+
+  // for each new oAuth2Client you need to return a promise
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, results) => {
+        // exit early on error
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  })
+    // if successful returns a list of events from "fullstackwebdev" calendar
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+        body: JSON.stringify({ events: results.data.items }),
+      };
+    })
+    // if not successful error will be returned
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
         body: JSON.stringify(err),
       };
     });
