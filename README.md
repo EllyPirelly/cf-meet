@@ -38,26 +38,50 @@ With this Meet APP, the user is able to
 - CSS
 - JavaScript
 
+### Global
+- `serverless`
+  - to not work with AWS Lambda inline editor
+  - to work in a context where libraries are used for functions
+  - to test functions locally, deploy functions
+
 ### Dependencies
 - `react` via `react-create-app` and all packages coming with it
 
 ### Dev Dependencies
 - `gh-pages`
   - to host the project on GitHub Pages
-  - for that also this is needed in the `package.json`
+  - for this both following lines are needed in the `package.json`
     - `"homepage": "https://ellypirelly.github.io/cf-meet",`
     - `"deploy": "gh-pages -d build"`
-  -
+
+### auth-server Dependencies
+- `googleapis` to securely send requests to the Google Calendar API (via OAuth2)
+
+### Detour - local Node.js server with http-server
+Why local server? To test if all serverless function created work properly via a `test-auth-server.html`.
+- install `http-server` as a global package, to set up a local Node.js server
+- in context of this project:
+  - first check on AWS if you are in the correct region, defined in `serverless.yaml`: `eu-central-1`
+  - back in terminal cd into `static-site-test`
+  - open `test-auth-server.html`
+  - run `http-server`
+  - command is supposed to show you the available ports
+  - for me, it does NOT so I open manually on `http://localhost:8080/`
+  - this should open `test-auth-server.html` in your browser
 
 ### How to run this?
 - clone the repo
 - `cd` into project
 - `npm install`
-- run to start the server
+- run to start the local server
   - `npm run start`
   - this is going to start a local server on `http://localhost:3000/`
 - run to deploy the project to the `gh-pages` branch
   - `npm run deploy`
+  - you don’t need to actively push first!
+  - `npm run deploy` will deploy on GitHub; there, a `gh-pages` will be created and deployed
+- run to build the project (should not be necessary, as should build in advance every time project is deployed)
+  - `npm run predeploy`
 - run to predeploy the project
   - `"predeploy": "npm run build",`
   - is necessary as sometimes the `build` folder does not contain the latest changes from the app
