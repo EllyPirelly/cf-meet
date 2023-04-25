@@ -5,6 +5,14 @@ A serverless, progressive web application with React using a TDD approach. The a
 <br>
 This PWA has been built as a task for Achievement 4 in [Career Foundry's Full-Stack Web Development Program](https://careerfoundry.com/en/courses/become-a-web-developer/).
 
+### Infrastructure
+Frontend:
+- React App, hosted on GitHub Pages
+Backend (Server Logic):
+- Node.js, Express, AWS Lambda functions (FaaS)
+Backend (Database):
+- Google Calendar API
+
 ### Technical requirements
 - the Meet App
   - must be a React application
