@@ -1,12 +1,12 @@
-const { google } = require("googleapis");
+const { google } = require('googleapis');
 // const OAuth2 = google.auth.OAuth2;
-const calendar = google.calendar("v3");
+const calendar = google.calendar('v3');
 
 // set access levels
 // any scopes passed must be enabled in the "OAuth consent screen" settings in your project on your Google Console
 // is set to read only intentionally to NO access rights to update the calendar
 // more info: https://developers.google.com/identity/protocols/oauth2/scopes
-const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 
 // values that google needs to generate an authentication URL to access google calendar api
 const credentials = {
@@ -14,11 +14,11 @@ const credentials = {
   project_id: process.env.PROJECT_ID,
   client_secret: process.env.CLIENT_SECRET,
   calendar_id: process.env.CALENDAR_ID,
-  auth_uri: "https://accounts.google.com/o/oauth2/auth",
-  token_uri: "https://oauth2.googleapis.com/token",
-  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  redirect_uris: ["https://ellypirelly.github.io/cf-meet/"],
-  javascript_origins: ["https://ellypirelly.github.io", "http://localhost:3000"],
+  auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+  token_uri: 'https://oauth2.googleapis.com/token',
+  auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+  redirect_uris: ['https://ellypirelly.github.io/cf-meet/'],
+  javascript_origins: ['https://ellypirelly.github.io', 'http://localhost:3000'],
 };
 
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
@@ -36,15 +36,15 @@ module.exports.getAuthURL = async () => {
   // use the instance stored in oAuth2Client
   // call `generateAuthUrl` on it and pass `access_type` and `scope`
   const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: "offline",
+    access_type: 'offline',
     scope: SCOPES,
   });
 
   return {
     statusCode: 200,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify({
       authUrl: authUrl,
@@ -92,8 +92,8 @@ module.exports.getAccessToken = async (event) => {
       return {
         statusCode: 500,
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
         body: JSON.stringify(err),
       };
@@ -122,7 +122,7 @@ module.exports.getCalendarEvents = async (event) => {
         auth: oAuth2Client,
         timeMin: new Date().toISOString(),
         singleEvents: true,
-        orderBy: "startTime",
+        orderBy: 'startTime',
       },
       (error, results) => {
         // exit early on error
@@ -151,8 +151,8 @@ module.exports.getCalendarEvents = async (event) => {
       return {
         statusCode: 500,
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
         },
         body: JSON.stringify(err),
       };
