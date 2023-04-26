@@ -5,7 +5,7 @@ class CitySearch extends Component {
     query: '',
     // query: 'Munich',
     suggestions: []
-  }
+  };
 
   handleInputChanged = (event) => {
     const value = event.target.value;

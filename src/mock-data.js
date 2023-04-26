@@ -77,6 +77,213 @@ const mockData = [
     },
     "eventType": "default"
   },
+  {
+    "kind": "calendar#event",
+    "etag": "\"3187232047578000\"",
+    "id": "013qoq4ns44cam7q4hqcf13eab_20200628T230000Z",
+    "status": "confirmed",
+    "htmlLink": "https://www.google.com/calendar/event?eid=MDEzcW9xNG5zNDRjYW03cTRocWNmMTNlYWJfMjAyMDA2MjhUMjMwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20",
+    "created": "2020-07-01T15:05:49.000Z",
+    "updated": "2020-07-01T15:07:03.789Z",
+    "summary": "jQuery and More",
+    "description": "Do you know jQuery is used by around 70 percent of the 10 million most popular websites as of May 2019? \n\nThough many consider it dead after Angular and Express gained popularity, jQuery is still an important part of many websites. \n\nIn our workshop, we teach basic to advanced jQuery where you will also be able to build a simple app using it. If you are familiar with JS, join us to learn probably its most popular library.",
+    "location": "Santiago, Santiago Metropolitan Region, Chile",
+    "creator": {
+      "email": "fullstackwebdev@careerfoundry.com",
+      "self": true
+    },
+    "organizer": {
+      "email": "fullstackwebdev@careerfoundry.com",
+      "self": true
+    },
+    "start": {
+      "dateTime": "2020-06-29T01:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "end": {
+      "dateTime": "2020-06-29T02:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "recurringEventId": "013qoq4ns44cam7q4hqcf13eab",
+    "originalStartTime": {
+      "dateTime": "2020-06-29T01:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "iCalUID": "013qoq4ns44cam7q4hqcf13eab@google.com",
+    "sequence": 1,
+    "hangoutLink": "https://meet.google.com/mqx-jyfg-uoc",
+    "conferenceData": {
+      "entryPoints": [
+        {
+          "entryPointType": "video",
+          "uri": "https://meet.google.com/mqx-jyfg-uoc",
+          "label": "meet.google.com/mqx-jyfg-uoc"
+        },
+        {
+          "entryPointType": "more",
+          "uri": "https://tel.meet/mqx-jyfg-uoc?pin=9759553023326",
+          "pin": "9759553023326"
+        },
+        {
+          "regionCode": "DE",
+          "entryPointType": "phone",
+          "uri": "tel:+49-40-8081618734",
+          "label": "+49 40 8081618734",
+          "pin": "678190650"
+        }
+      ],
+      "conferenceSolution": {
+        "key": {
+          "type": "hangoutsMeet"
+        },
+        "name": "Google Meet",
+        "iconUri": "https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v6/web-512dp/logo_meet_2020q4_color_2x_web_512dp.png"
+      },
+      "conferenceId": "mqx-jyfg-uoc"
+    },
+    "reminders": {
+      "useDefault": true
+    },
+    "eventType": "default"
+  },
+  {
+    "kind": "calendar#event",
+    "etag": "\"3187234500432000\"",
+    "id": "65jg7h2f96klim15fie75mj1a1_20200629T140000Z",
+    "status": "confirmed",
+    "htmlLink": "https://www.google.com/calendar/event?eid=NjVqZzdoMmY5NmtsaW0xNWZpZTc1bWoxYTFfMjAyMDA2MjlUMTQwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20",
+    "created": "2020-07-01T15:26:57.000Z",
+    "updated": "2020-07-01T15:27:30.216Z",
+    "summary": "AngularJS Workshop",
+    "description": "Developed by Google, AngularJS is a relatively new JavaScript, and it is designed to make front-end development as easy as possible for you. \n\nJoin us to get introduced to this wonderful framework and dive deep into its features.",
+    "location": "Cape Town, South Africa",
+    "creator": {
+      "email": "fullstackwebdev@careerfoundry.com",
+      "self": true
+    },
+    "organizer": {
+      "email": "fullstackwebdev@careerfoundry.com",
+      "self": true
+    },
+    "start": {
+      "dateTime": "2020-06-29T16:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "end": {
+      "dateTime": "2020-06-29T17:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "recurringEventId": "65jg7h2f96klim15fie75mj1a1",
+    "originalStartTime": {
+      "dateTime": "2020-06-29T16:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "iCalUID": "65jg7h2f96klim15fie75mj1a1@google.com",
+    "sequence": 1,
+    "hangoutLink": "https://meet.google.com/ctp-pwtc-pmq",
+    "conferenceData": {
+      "entryPoints": [
+        {
+          "entryPointType": "video",
+          "uri": "https://meet.google.com/ctp-pwtc-pmq",
+          "label": "meet.google.com/ctp-pwtc-pmq"
+        },
+        {
+          "entryPointType": "more",
+          "uri": "https://tel.meet/ctp-pwtc-pmq?pin=2824243883315",
+          "pin": "2824243883315"
+        },
+        {
+          "regionCode": "DE",
+          "entryPointType": "phone",
+          "uri": "tel:+49-30-300195220",
+          "label": "+49 30 300195220",
+          "pin": "987090091"
+        }
+      ],
+      "conferenceSolution": {
+        "key": {
+          "type": "hangoutsMeet"
+        },
+        "name": "Google Meet",
+        "iconUri": "https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v6/web-512dp/logo_meet_2020q4_color_2x_web_512dp.png"
+      },
+      "conferenceId": "ctp-pwtc-pmq"
+    },
+    "reminders": {
+      "useDefault": true
+    },
+    "eventType": "default"
+  },
+  {
+    "kind": "calendar#event",
+    "etag": "\"3187221858184000\"",
+    "id": "3gi3kabkm3bua5lq3jhscc8s4c_20200629T200000Z",
+    "status": "confirmed",
+    "htmlLink": "https://www.google.com/calendar/event?eid=M2dpM2thYmttM2J1YTVscTNqaHNjYzhzNGNfMjAyMDA2MjlUMjAwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20",
+    "created": "2020-07-01T13:23:24.000Z",
+    "updated": "2020-07-01T13:42:09.092Z",
+    "summary": "Intro to AngularJS-Remote",
+    "description": "Developed by Google, AngularJS is a relatively new JavaScript, and it is designed to make front-end development as easy as possible for you. Join us to get introduced to this wonderful framework and dive deep into its features. ",
+    "location": "New York, NY, USA",
+    "creator": {
+      "email": "fullstackwebdev@careerfoundry.com",
+      "self": true
+    },
+    "organizer": {
+      "email": "fullstackwebdev@careerfoundry.com",
+      "self": true
+    },
+    "start": {
+      "dateTime": "2020-06-29T22:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "end": {
+      "dateTime": "2020-06-29T23:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "recurringEventId": "3gi3kabkm3bua5lq3jhscc8s4c",
+    "originalStartTime": {
+      "dateTime": "2020-06-29T22:00:00+02:00",
+      "timeZone": "Europe/Berlin"
+    },
+    "iCalUID": "3gi3kabkm3bua5lq3jhscc8s4c@google.com",
+    "sequence": 2,
+    "hangoutLink": "https://meet.google.com/xcb-hfjb-psv",
+    "conferenceData": {
+      "entryPoints": [
+        {
+          "entryPointType": "video",
+          "uri": "https://meet.google.com/xcb-hfjb-psv",
+          "label": "meet.google.com/xcb-hfjb-psv"
+        },
+        {
+          "entryPointType": "more",
+          "uri": "https://tel.meet/xcb-hfjb-psv?pin=4442155852117",
+          "pin": "4442155852117"
+        },
+        {
+          "regionCode": "DE",
+          "entryPointType": "phone",
+          "uri": "tel:+49-40-8081617300",
+          "label": "+49 40 8081617300",
+          "pin": "657955248"
+        }
+      ],
+      "conferenceSolution": {
+        "key": {
+          "type": "hangoutsMeet"
+        },
+        "name": "Google Meet",
+        "iconUri": "https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v6/web-512dp/logo_meet_2020q4_color_2x_web_512dp.png"
+      },
+      "conferenceId": "xcb-hfjb-psv"
+    },
+    "reminders": {
+      "useDefault": true
+    },
+    "eventType": "default"
+  },
 ];
 
 export { mockData };
