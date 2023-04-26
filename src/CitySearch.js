@@ -28,15 +28,15 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className="CitySearch">
+      <div className='city-search'>
         <input
-          type="text"
-          className="city"
+          type='text'
+          className='city-input'
           value={this.state.query}
           onChange={this.handleInputChanged}
         />
 
-        <ul className="suggestions">
+        <ul className='city-suggestions'>
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
@@ -49,7 +49,7 @@ class CitySearch extends Component {
         </ul>
       </div>
     );
-  }
+  };
 };
 
 export default CitySearch;

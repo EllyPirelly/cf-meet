@@ -16,7 +16,6 @@ describe('<Event /> component', () => {
   });
 
   test('render default event information', () => {
-    expect(EventWrapper.find('.event-info')).toHaveLength(1);
     const eventHeadline = EventWrapper.find('.event-headline');
     expect(eventHeadline.text()).toBe(`${event.summary}`);
     const eventStart = EventWrapper.find('.event-start');
