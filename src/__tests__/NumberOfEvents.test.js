@@ -6,21 +6,26 @@ describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsWrapper;
 
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => { }} />);
   })
 
-  test('render outer number of events container', () => {
+  test('render number of events container', () => {
     expect(NumberOfEventsWrapper.find('.eventnumber-container')).toHaveLength(1);
   });
 
-  test('default event number input', () => {
-    expect(NumberOfEventsWrapper.state('query')).toBe(1);
+  test('check input element value', () => {
+    const numberOfEvents = NumberOfEventsWrapper.state('numberOfEvents');
+    expect(NumberOfEventsWrapper.find('.eventnumber-amount').prop('value')).toBe(numberOfEvents);
   });
 
-  test('check event number input', () => {
-    NumberOfEventsWrapper.find('.eventnumber-amount').simulate('change', {
-      target: { value: 32 },
-    });
-    expect(NumberOfEventsWrapper.state('query')).toBe(32);
+  test('change state when input changes', () => {
+    const eventObject = {
+      target: { value: 32 }
+    };
+    NumberOfEventsWrapper.find('.eventnumber-amount').simulate(
+      'change',
+      eventObject
+    );
+    expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(32);
   });
 });

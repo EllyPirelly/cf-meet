@@ -1,51 +1,70 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Event extends Component {
   state = {
-    // hide details per default
-    hide: true,
-  };
-
-  // function for toggle button
-  handleItemClicked = () => {
-    this.setState((prevState) => ({
-      hide: !prevState.hide,
-    }));
+    showDetails: false,
   };
 
   render() {
-    const { event } = this.props;
+    // const { event } = this.props;
+
+    const {
+      summary,
+      location,
+      start,
+      end,
+      // hmtlLink,
+      description
+    } = this.props.event;
+
+    const { showDetails } = this.state;
 
     return (
       <div className='event-container'>
         <div className='event-info'>
-          <h2 className='event-headline'>{event.summary}</h2>
-
+          <h2 className='event-headline'>{summary}</h2>
           <div>
-            <span className='event-start'>Start: {new Date(event.start.dateTime).toISOString()}</span>
-            <span className='event-end'>End: {new Date(event.end.dateTime).toISOString()}</span>
-            <span className='event-location'>{event.location}</span>
+            <span className='event-start'>Start: {new Date(start.dateTime).toISOString()}</span>
+            <span className='event-end'>End: {new Date(end.dateTime).toISOString()}</span>
+            <span className='event-location'>{location}</span>
           </div>
+
+          {showDetails && (
+            <button
+              type='button'
+              className="toggle-details-btn"
+              onClick={() => this.setState({ showDetails: !showDetails })}
+            >
+              Hide Details
+            </button>
+          )}
+
+          {!showDetails && (
+            <button
+              type='button'
+              className="toggle-details-btn"
+              onClick={() => this.setState({ showDetails: !showDetails })}
+            >
+              Show Details
+            </button>
+          )}
         </div>
 
-        {!this.hide && (
+        {showDetails && (
           <div className='event-info-details'>
-            {/* sub headline stays static */}
             <h3>About the event:</h3>
-            {/* Text in link needs to be 'See details on Google Calendar' */}
-            <a href='{event.htmlLink}' className='event-google-link'>{event.htmlLink}</a>
-            <p className='event-description'>{event.description}</p>
+            <h4>
+              {/* <a href='{htmlLink}' className='event-google-link'> */}
+              <a href='/' className='event-google-link'>
+                See details on Google Calendar
+              </a>
+            </h4>
+            <p className='event-description'>{description}</p>
           </div>
         )}
-
-        <button
-          type='button'
-          className='toggle-details'
-          onClick={() => this.handleItemClicked()}
-        >Show / Hide details</button>
       </div>
     );
-  }
+  };
 };
 
 export default Event;
