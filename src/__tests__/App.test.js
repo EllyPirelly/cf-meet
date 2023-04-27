@@ -13,15 +13,15 @@ describe('<App /> component', () => {
     AppWrapper = shallow(<App />);
   });
 
-  test('render EventList', () => {
-    expect(AppWrapper.find(EventList)).toHaveLength(1);
-  });
-
   test('render CitySearch', () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   });
 
-  test('NumberOfEvents', () => {
+  test('render EventList', () => {
+    expect(AppWrapper.find(EventList)).toHaveLength(1);
+  });
+
+  test('render NumberOfEvents', () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   })
 
