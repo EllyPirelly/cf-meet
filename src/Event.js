@@ -22,27 +22,26 @@ class Event extends Component {
           <h2 className='event-headline'>{event.summary}</h2>
 
           <div>
-            <span className='event-start'>Start: {new Date(event.start.dateTime).toISOString()}</span>
-            <span className='event-end'>End: {new Date(event.end.dateTime).toISOString()}</span>
-            <span className='event-location'>{event.location}</span>
+            <div className='event-start'>Start: {new Date(event.start.dateTime).toUTCString()}</div>
+            <div className='event-end'>End: {new Date(event.end.dateTime).toUTCString()}</div>
+            <div className='event-location'>Location: {event.location}</div>
           </div>
-        </div>
 
-        {!this.hide && (
-          <div className='event-info-details'>
-            {/* sub headline stays static */}
-            <h3>About the event:</h3>
-            {/* Text in link needs to be 'See details on Google Calendar' */}
-            <a href='{event.htmlLink}' className='event-google-link'>{event.htmlLink}</a>
-            <p className='event-description'>{event.description}</p>
-          </div>
-        )}
+          {/* details */}
+          {this.state.hide === false && (
+            <div className='event-info-details'>
+              <h3>About the event:</h3>
+              <a href={event.htmlLink} className='event-google-link'>See details on Google Calendar</a>
+              <p className='event-description'>{event.description}</p>
+            </div>
+          )}
+        </div>
 
         <button
           type='button'
           className='toggle-details'
           onClick={() => this.handleItemClicked()}
-        >Show / Hide details</button>
+        >Details</button>
       </div>
     );
   }
