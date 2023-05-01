@@ -3,17 +3,14 @@ import React, { Component } from 'react';
 class CitySearch extends Component {
   state = {
     query: '',
-    // query: 'Munich',
     suggestions: []
-  };
+  }
 
   handleInputChanged = (event) => {
     const value = event.target.value;
-
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-
     this.setState({
       query: value,
       suggestions,
@@ -24,19 +21,19 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion
     });
-  };
+  }
 
   render() {
     return (
-      <div className='city-search'>
+      <div className="CitySearch">
         <input
-          type='text'
-          className='city-input'
+          type="text"
+          className="city"
           value={this.state.query}
           onChange={this.handleInputChanged}
         />
 
-        <ul className='city-suggestions'>
+        <ul className="suggestions">
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
@@ -49,7 +46,7 @@ class CitySearch extends Component {
         </ul>
       </div>
     );
-  };
-};
+  }
+}
 
 export default CitySearch;

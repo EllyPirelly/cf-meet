@@ -11,10 +11,3 @@ export const extractLocations = (events) => {
   var locations = [...new Set(extractLocations)];
   return locations;
 };
-
-// not sure if we are expected to also mock all other data via functions?
-// export const extractSummaries = (events) => {
-//   var extractSummaries = events.map((event) => event.summary);
-//   var summaries = [...new Set(extractSummaries)];
-//   return summaries;
-// };
