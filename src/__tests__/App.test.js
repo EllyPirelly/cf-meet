@@ -68,9 +68,10 @@ describe('<App /> integration', () => {
     const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
     await suggestionItems.at(suggestionItems.length - 1).simulate('click');
     const allEvents = await getEvents();
+    // console.log(AppWrapper.debug());
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
 });
 
-// toggle this to trigger tests
+// toggle this to trigger tests t

@@ -11,4 +11,4 @@ describe('<EventList /> component', () => {
   });
 });
 
-// toggle this to trigger tests
+// toggle this to trigger tests t
