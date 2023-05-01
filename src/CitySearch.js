@@ -30,6 +30,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <h3>Search for a city</h3>
         <input
           type="text"
           className="city"
@@ -45,7 +46,7 @@ class CitySearch extends Component {
               onClick={() => this.handleItemClicked(suggestion)}
             >{suggestion}</li>
           ))}
-          <li onClick={() => this.handleItemClicked("all")}>
+          <li onClick={() => this.handleItemClicked('this does not work')}>
             <b>See all cities</b>
           </li>
         </ul>

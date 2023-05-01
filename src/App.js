@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import './nprogress.css';
 
 class App extends Component {
   state = {
@@ -15,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     this.mounted = true;
+
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });

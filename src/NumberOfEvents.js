@@ -15,6 +15,7 @@ class NumberOfEvents extends Component {
   render() {
     return (
       <div className='number-container'>
+        <h3>Set the amount of events you are looking for</h3>
         <input
           type='number'
           className='eventnumber-amount'
