@@ -6,15 +6,20 @@ describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsWrapper;
 
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => { }} />);
   });
 
   test("renders the number of events container", () => {
     expect(NumberOfEventsWrapper.find('.number-container')).toHaveLength(1);
   });
 
-  test("check if input default is 1", () => {
-    expect(NumberOfEventsWrapper.state('numberinput')).toBe(1);
+  test("check if input default is 32", () => {
+    expect(NumberOfEventsWrapper.state('numberinput')).toBe(32);
+  });
+
+  test('check if user input is rendered correctly', () => {
+    const number = NumberOfEventsWrapper.state('numberinput');
+    expect(NumberOfEventsWrapper.find('.eventnumber-amount').prop('value')).toBe(number);
   });
 
   test('check event number input', () => {
