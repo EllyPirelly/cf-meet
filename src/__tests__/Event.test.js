@@ -23,12 +23,12 @@ describe("<Event /> component", () => {
 
     expect(eventHeadline.text()).toBe(`${event.summary}`);
     expect(eventStart.text()).toBe(
-      `Start: ${new Date(event.start.dateTime).toISOString()}`
+      `Start: ${new Date(event.start.dateTime).toUTCString()}`
     );
     expect(eventEnd.text()).toBe(
-      `End: ${new Date(event.end.dateTime).toISOString()}`
+      `End: ${new Date(event.end.dateTime).toUTCString()}`
     );
-    expect(eventLocation.text()).toBe(`${event.location}`);
+    expect(eventLocation.text()).toBe(`Location: ${event.location}`);
   });
 
   test('render event details', () => {
@@ -51,5 +51,6 @@ describe("<Event /> component", () => {
     toggleButton.simulate('click');
     expect(EventWrapper.state('hide')).toBe(false);
   });
-
 });
+
+// toggle this to trigger tests

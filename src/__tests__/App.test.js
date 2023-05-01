@@ -72,3 +72,5 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 });
+
+// toggle this to trigger tests
