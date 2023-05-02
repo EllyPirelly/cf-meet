@@ -31,19 +31,20 @@ describe("<Event /> component", () => {
     expect(eventLocation.text()).toBe(`Location: ${event.location}`);
   });
 
-  // watch out - details are hidden by default!
+  // watch out - details are hidden by default on first page view!
   // don't check for elements that initially are not present on site but depend on a click to be rendered!
   test('render event details', async () => {
-    // check for the toggle button
+    // check for the toggle button to be present
     const toggleDetails = EventWrapper.find('.toggle-details');
-    // if toggleDetails are there, simulate click
+    // simulate click
     await toggleDetails.simulate('click');
 
     // now check for sub event details
+    // first check for outer details container, then nested
+    expect(EventWrapper.find('.event-info-details')).toHaveLength(1);
     const eventGoogleLink = EventWrapper.find('.event-google-link');
     const eventDescription = EventWrapper.find('.event-description');
 
-    expect(EventWrapper.find('.event-info-details')).toHaveLength(1);
     expect(eventGoogleLink.prop('href')).toBe(`${event.htmlLink}`);
     expect(eventDescription.text()).toBe(`${event.description}`);
   });
@@ -54,11 +55,9 @@ describe("<Event /> component", () => {
 
   test('show/hide details when clicked', () => {
     const toggleButton = EventWrapper.find('.toggle-details');
-
     expect(toggleButton).toHaveLength(1);
-    toggleButton.simulate('click');
+    // per default, details are hidden
     expect(EventWrapper.state('hide')).toBe(false);
+    toggleButton.simulate('click');
   });
 });
-
-// toggle this to trigger tests t

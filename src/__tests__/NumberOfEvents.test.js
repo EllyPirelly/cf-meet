@@ -29,5 +29,3 @@ describe('<NumberOfEvents /> component', () => {
     expect(NumberOfEventsWrapper.state('numberinput')).toBe(32);
   });
 });
-
-// toggle this to trigger tests t
