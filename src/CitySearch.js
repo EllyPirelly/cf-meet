@@ -31,11 +31,11 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className="CitySearch">
-        <h3>Search for a city</h3>
+      <div className="city-search-container">
         <input
           type="text"
           className="city"
+          placeholder="Search for a City"
           value={this.state.query}
           onChange={this.handleInputChanged}
           // booleand state showSuggestions true
@@ -46,7 +46,7 @@ class CitySearch extends Component {
           className="suggestions"
           // if showSuggestions is true, list is visible
           // if showSuggestions is false style won't have display none, and list will be displayed
-          style={this.state.showSuggestions ? {} : { display: 'none' }}>
+          style={this.state.showSuggestions ? { display: 'block' } : { display: 'none' }}>
 
           {this.state.suggestions.map((suggestion) => (
             <li

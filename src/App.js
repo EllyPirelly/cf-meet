@@ -59,6 +59,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h2 className="headline-primary">Clever Headline Here</h2>
         <CitySearch
           // pass the state to CitySearch as a prop of locations
           locations={this.state.locations}

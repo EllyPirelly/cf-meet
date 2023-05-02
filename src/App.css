@@ -9,6 +9,7 @@ body {
   color: #282828;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
+  line-height: 1.15rem;
   margin: 2rem;
   min-height: 100vh;
 }
@@ -17,15 +18,110 @@ li {
   list-style-type: none;
 }
 
+.headline-primary {
+  text-align: center;
+}
+
+/* CitySearch */
+.city-search-container {
+  position: relative;
+  text-align: center;
+}
+
+.city {
+  border: 1px solid #282828;
+  border-radius: .5rem;
+  margin-top: .75rem;
+  padding: 8px 10px;
+  width: 260px;
+}
+
+.suggestions {
+  box-shadow: rgba(40, 40, 40, 0.3) 0px 19px 38px, rgba(40, 40, 40, 0.22) 0px 15px 12px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 42px;
+  width: 260px;
+  z-index: 2;
+}
+
+.suggestions > li {
+  background-color: #eee;
+  cursor: default;
+  padding: 8px 6px 8px 10px;
+  text-align: left;
+}
+
+.suggestions > li:hover {
+  background-color: #32acfd;
+  color: #fff;
+}
+
+.number-container,
 .eventlist-container {
   margin-top: 2rem;
 }
 
-/* old */
-.App {
+/* NumberOfEvents */
+.number-container {
   text-align: center;
 }
 
+.eventnumber-amount {
+  border: 1px solid #282828;
+  border-radius: .5rem;
+  margin-top: .5rem;
+  padding: 8px 10px;
+}
+
+/* EventList */
+.eventlist-container li {
+  border: 1px solid #282828;
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+.event-info-short {
+  margin-top: 1rem;
+}
+
+.event-info-details {
+  margin-top: 1rem;
+}
+
+.event-description {
+  margin-top: .5rem;
+}
+
+.event-google-link {
+  color: inherit;
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.event-google-link:hover {
+  color: #007bcd;
+}
+
+.toggle-details {
+  border: 1px solid #282828;
+  border-radius: .5rem;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  padding: 8px 10px;
+}
+
+.toggle-details:hover {
+  background-color: #32acfd;
+  border: 1px solid #32acfd;
+  color: #fff;
+}
+
+/* old */
 .App-logo {
   height: 40vmin;
   pointer-events: none;

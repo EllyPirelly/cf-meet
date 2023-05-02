@@ -28,7 +28,7 @@ describe("<Event /> component", () => {
     expect(eventEnd.text()).toBe(
       `End: ${new Date(event.end.dateTime).toUTCString()}`
     );
-    expect(eventLocation.text()).toBe(`Location: ${event.location}`);
+    expect(eventLocation.text()).toBe(`@${event.summary} | ${event.location}`);
   });
 
   // watch out - details are hidden by default on first page view!

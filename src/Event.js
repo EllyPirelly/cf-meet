@@ -21,18 +21,18 @@ class Event extends Component {
         <div className='event-info'>
           <h2 className='event-headline'>{event.summary}</h2>
 
-          <div>
+          <div className="event-info-short">
             <div className='event-start'>Start: {new Date(event.start.dateTime).toUTCString()}</div>
             <div className='event-end'>End: {new Date(event.end.dateTime).toUTCString()}</div>
-            <div className='event-location'>Location: {event.location}</div>
+            <div className='event-location'>@{event.summary} | {event.location}</div>
           </div>
 
           {/* details */}
           {this.state.hide === false && (
             <div className='event-info-details'>
-              <h3>About the event:</h3>
-              <a href={event.htmlLink} className='event-google-link'>See details on Google Calendar</a>
+              <h3>About the event</h3>
               <p className='event-description'>{event.description}</p>
+              <a href={event.htmlLink} className='event-google-link'>See details on Google Calendar</a>
             </div>
           )}
         </div>
@@ -41,7 +41,7 @@ class Event extends Component {
           type='button'
           className='toggle-details'
           onClick={() => this.handleItemClicked()}
-        >Details</button>
+        >Show Details</button>
       </div>
     );
   }
