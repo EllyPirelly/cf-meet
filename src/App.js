@@ -36,6 +36,10 @@ class App extends Component {
 
   // HAS to be defined here b/c state is defined here, too
   updateEvents = (location, eventCount) => {
+    // if we don't define this here, for NumberOfEvents getEvents would run on undefined location
+    // for NumberOfEvents, as location is undefined it's false so 'all' will be returned
+    location = location || 'all';
+
     getEvents().then((events) => {
       // 'all' is coming from CitySearch
       const locationEvents = (location === 'all')
@@ -45,7 +49,8 @@ class App extends Component {
         : events.filter((event) => event.location === location);
 
       this.setState({
-        events: locationEvents,
+        // slice events down to the eventCount
+        events: locationEvents.slice(0, eventCount),
         eventCount: eventCount
       });
     });

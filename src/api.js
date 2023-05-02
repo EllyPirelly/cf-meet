@@ -13,7 +13,7 @@ export const extractLocations = (events) => {
   return locations;
 };
 
-// check the token's validity
+// check if token is valid
 const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -24,8 +24,11 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
+// remove the code form the URL once accessed
 const removeQuery = () => {
+  // is there a path?
   if (window.history.pushState && window.location.pathname) {
+    // yes: build URL with current path
     var newurl =
       window.location.protocol +
       '//' +
@@ -33,11 +36,13 @@ const removeQuery = () => {
       window.location.pathname;
     window.history.pushState('', '', newurl);
   } else {
+    // no: build URL without a path
     newurl = window.location.protocol + '//' + window.location.host;
     window.history.pushState('', '', newurl);
   }
 };
 
+// gets called if authorization code is present
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
@@ -55,6 +60,7 @@ const getToken = async (code) => {
 };
 
 export const getEvents = async () => {
+  // NProgress: used to create and display progress bars at the top of the page
   NProgress.start();
 
   // to return mock data when on localhost
@@ -80,7 +86,6 @@ export const getEvents = async () => {
     }
 
     NProgress.done();
-
     return result.data.events;
   }
 };
@@ -92,13 +97,12 @@ export const getAccessToken = async () => {
   // check for access token
   if (!accessToken || tokenCheck.error) {
     await localStorage.removeItem('access_token');
-
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get('code');
 
     // check for authorization code
     if (!code) {
-      // Google Authorization screen
+      // redirect to Google Authorization screen
       const results = await axios.get(
         'https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
       );

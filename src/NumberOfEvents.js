@@ -13,13 +13,15 @@ class NumberOfEvents extends Component {
       eventCount: inputValue
     });
 
-    this.props.updateEvents(event);
+    // undefined b/c we don't have any location here
+    // inputValue -> eventCount -> number
+    this.props.updateEvents(undefined, inputValue);
   };
 
   render() {
     return (
       <div className='number-container'>
-        <h3>Set the amount of events you are looking for</h3>
+        <h3>Number of Events:</h3>
         <input
           type='number'
           className='eventnumber-amount'
