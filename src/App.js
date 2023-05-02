@@ -8,10 +8,12 @@ import './nprogress.css';
 
 class App extends Component {
   state = {
-    // passed as events prop "down" to components
+    // passed as events prop
     events: [],
-    // passed as locations prop "down" to components
-    locations: []
+    // passed as locations prop
+    locations: [],
+    // passed as default amount prop
+    eventCount: 32,
   };
 
   componentDidMount() {
@@ -19,7 +21,10 @@ class App extends Component {
 
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({
+          events,
+          locations: extractLocations(events)
+        });
       }
     });
   };
@@ -29,12 +34,15 @@ class App extends Component {
   };
 
   // HAS to be defined here b/c state is defined here, too
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ? events : events.filter((event) => event.location === location);
+      const locationEvents = (location === 'all')
+        ? events
+        : events.filter((event) => event.location === location);
 
       this.setState({
-        events: locationEvents
+        events: locationEvents,
+        eventCount: eventCount
       });
     });
   };
@@ -47,8 +55,12 @@ class App extends Component {
           // updateEvents is passed as a prop so we can call it inside handleItemClicked in CitySearch
           updateEvents={this.updateEvents}
         />
-        <NumberOfEvents />
-        <EventList events={this.state.events} />
+        <NumberOfEvents
+          updateEvents={this.updateEvents}
+        />
+        <EventList
+          events={this.state.events}
+        />
       </div>
     );
   }
