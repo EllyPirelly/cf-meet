@@ -16,6 +16,7 @@ class App extends Component {
     eventCount: 32,
   };
 
+  // load events when the app loads
   componentDidMount() {
     this.mounted = true;
 
@@ -36,8 +37,11 @@ class App extends Component {
   // HAS to be defined here b/c state is defined here, too
   updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
+      // 'all' is coming from CitySearch
       const locationEvents = (location === 'all')
+        // is 'all'? return all events
         ? events
+        // is not 'all'? filter the events list
         : events.filter((event) => event.location === location);
 
       this.setState({
@@ -51,6 +55,7 @@ class App extends Component {
     return (
       <div className="App">
         <CitySearch
+          // pass the state to CitySearch as a prop of locations
           locations={this.state.locations}
           // updateEvents is passed as a prop so we can call it inside handleItemClicked in CitySearch
           updateEvents={this.updateEvents}
@@ -59,6 +64,7 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
         <EventList
+          // pass the state to EventList as a prop of events
           events={this.state.events}
         />
       </div>

@@ -4,6 +4,7 @@ class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
+    // boolean state, per default undefined
     showSuggestions: undefined
   }
 
@@ -21,6 +22,7 @@ class CitySearch extends Component {
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
+      // state needs to be false (hidden) whenever an item is clicked
       showSuggestions: false
     });
 
@@ -36,16 +38,24 @@ class CitySearch extends Component {
           className="city"
           value={this.state.query}
           onChange={this.handleInputChanged}
+          // booleand state showSuggestions true
           onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
 
-        <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
+        <ul
+          className="suggestions"
+          // if showSuggestions is true, list is visible
+          // if showSuggestions is false style won't have display none, and list will be displayed
+          style={this.state.showSuggestions ? {} : { display: 'none' }}>
+
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}
             >{suggestion}</li>
           ))}
+
+          {/* 'all' is used as a flag */}
           <li onClick={() => this.handleItemClicked('all')}>
             <b>See all cities</b>
           </li>

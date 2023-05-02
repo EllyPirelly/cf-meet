@@ -13,6 +13,7 @@ export const extractLocations = (events) => {
   return locations;
 };
 
+// check the token's validity
 const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -56,6 +57,7 @@ const getToken = async (code) => {
 export const getEvents = async () => {
   NProgress.start();
 
+  // to return mock data when on localhost
   if (window.location.href.startsWith('http://localhost')) {
     NProgress.done();
     return mockData;
@@ -66,8 +68,9 @@ export const getEvents = async () => {
   if (token) {
     removeQuery();
 
-    // const url = 'https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/token/' + token;
-    const url = `https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/token/ + ${token}`;
+    // GET request to Google Calendar API
+    // const url = 'https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/' + token;
+    const url = `https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/ + ${token}`;
     const result = await axios.get(url);
 
     if (result.data) {
@@ -86,13 +89,16 @@ export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
+  // check for access token
   if (!accessToken || tokenCheck.error) {
     await localStorage.removeItem('access_token');
 
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get('code');
 
+    // check for authorization code
     if (!code) {
+      // Google Authorization screen
       const results = await axios.get(
         'https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
       );
@@ -106,5 +112,3 @@ export const getAccessToken = async () => {
 
   return accessToken;
 };
-
-// to delete

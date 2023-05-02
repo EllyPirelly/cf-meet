@@ -43,14 +43,18 @@ describe('<App /> integration', () => {
   // events gets passed as prop from App to EventList
   test('App passes "events" state as a prop to EventList', () => {
     const AppEventsState = AppWrapper.state('events');
+    // state of events is not undefined
     expect(AppEventsState).not.toEqual(undefined);
+    // compare state of App's events with EventList's events prop
     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
   });
 
   // locations gets passed as prop from App to CitySearch
   test('App passes "locations" state as a prop to CitySearch', () => {
     const AppLocationsState = AppWrapper.state('locations');
+    // state of locations is not undefined
     expect(AppLocationsState).not.toEqual(undefined);
+    // compare state of App's locations with CitySearch'S locations prop
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
   });
 
@@ -59,16 +63,24 @@ describe('<App /> integration', () => {
     const locations = extractLocations(mockData);
     CitySearchWrapper.setState({ suggestions: locations });
     const suggestions = CitySearchWrapper.state('suggestions');
+    // selectedIndex will hold the index of the selected suggestion from the suggestions array
     const selectedIndex = Math.floor(Math.random() * (suggestions.length));
+    // return the actual suggestion with suggestion[selectedIndex]
     const selectedCity = suggestions[selectedIndex];
+    // mimics click via handleItemClicked method from CitySearch, passing the selected suggestion/city
+    // await: async codee that involves fetching the full list of events before filtering
     await CitySearchWrapper.instance().handleItemClicked(selectedCity);
+    // async function that is mainly expected to get all the events from the API/mock data asynchronously
     const allEvents = await getEvents();
+    // all events are filtered against the selected city in order to find events that have the same location
     const eventsToShow = allEvents.filter(event => event.location === selectedCity);
+    // compares whether the state of events takes the same array as the events resulted from filtering process
     expect(AppWrapper.state('events')).toEqual(eventsToShow);
   });
 
   test('get list of all events when user selects "See all cities"', async () => {
     const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
+    // simulates a click on the last item which will always be see all cities
     await suggestionItems.at(suggestionItems.length - 1).simulate('click');
     const allEvents = await getEvents();
     // console.log(AppWrapper.debug());
