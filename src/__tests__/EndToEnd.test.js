@@ -6,7 +6,15 @@ describe('show/hide an event details', () => {
 
   beforeAll(async () => {
     jest.setTimeout(30000);
+    // headless mode on - default
     browser = await puppeteer.launch();
+    // headless mode off - to watch tests being conducted in the browser
+    // const browser = await puppeteer.launch({
+    //   headless: false,
+    //   slowMo: 250,
+    //   // ignores default setting that causes timeout errors
+    //   ignoreDefaultArgs: ['--disable-extensions']
+    // });
     page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     // ensure that event list is loaded, waits for Event to be rendered
