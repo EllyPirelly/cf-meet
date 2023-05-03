@@ -32,4 +32,12 @@ describe('show/hide an event details', () => {
     // eventDetails need to exist at this time
     expect(eventDetails).toBeDefined();
   });
+
+  test('User can collapse an event to hide its details', async () => {
+    // simulate user click on toggle-details button
+    await page.click('.event-container .toggle-details');
+    const eventDetails = await page.$('.event-container .event-info-details');
+    // eventDetails need to NOT exist at this time
+    expect(eventDetails).toBeNull();
+  });
 });
