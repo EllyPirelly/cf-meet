@@ -1,6 +1,6 @@
 Feature: Toggle between showing or hiding details of one event
 
-Scenario: An element is collapsed by default.
+Scenario: An event element is collapsed by default.
 Given the main page has been opened
 And a list of events has been rendered
 When the user has not clicked the toggle button
