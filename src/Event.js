@@ -32,7 +32,7 @@ class Event extends Component {
             <div className='event-info-details'>
               <h3>About the event</h3>
               <p className='event-description'>{event.description}</p>
-              <a href={event.htmlLink} className='event-google-link'>See details on Google Calendar</a>
+              <a href={event.htmlLink} className='event-google-link' target='_blank' rel='noopener noreferrer'>See details on Google Calendar</a>
             </div>
           )}
         </div>
