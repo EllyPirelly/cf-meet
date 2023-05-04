@@ -15,6 +15,7 @@ class Event extends Component {
 
   render() {
     const { event } = this.props;
+    const { hide } = this.state;
 
     return (
       <div className='event-container'>
@@ -41,7 +42,7 @@ class Event extends Component {
           type='button'
           className='toggle-details'
           onClick={() => this.handleItemClicked()}
-        >Show Details</button>
+        >{hide ? 'Show' : 'Hide'} Details</button>
       </div>
     );
   }
