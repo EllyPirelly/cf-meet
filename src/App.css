@@ -5,12 +5,12 @@
 }
 
 body {
-  background-color: #e6f5ff;
+  background-color: #fff;
   color: #282828;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.15rem;
-  margin: 2rem;
+  line-height: 1.2;
+  padding: 2rem;
   min-height: 100vh;
 }
 
@@ -18,8 +18,24 @@ li {
   list-style-type: none;
 }
 
+h4 {
+  margin-top: 2rem;
+}
+
 .headline-primary {
   text-align: center;
+}
+
+/* common */
+.alert,
+.city,
+.eventnumber-amount {
+  margin-top: .5rem;
+}
+
+.number-container,
+.eventlist-container {
+  margin-top: 2rem;
 }
 
 /* CitySearch */
@@ -31,7 +47,6 @@ li {
 .city {
   border: 1px solid #282828;
   border-radius: .5rem;
-  margin-top: .75rem;
   padding: 8px 10px;
   width: 260px;
 }
@@ -42,26 +57,21 @@ li {
   margin: 0 auto;
   position: absolute;
   right: 0;
-  top: 42px;
+  top: 60px;
   width: 260px;
   z-index: 2;
 }
 
 .suggestions > li {
-  background-color: #eee;
+  background-color: #e5e5e5;
   cursor: default;
   padding: 8px 6px 8px 10px;
   text-align: left;
 }
 
 .suggestions > li:hover {
-  background-color: #32acfd;
+  background-color: #737373;
   color: #fff;
-}
-
-.number-container,
-.eventlist-container {
-  margin-top: 2rem;
 }
 
 /* NumberOfEvents */
@@ -72,8 +82,8 @@ li {
 .eventnumber-amount {
   border: 1px solid #282828;
   border-radius: .5rem;
-  margin-top: .5rem;
   padding: 8px 10px;
+  width: 70px;
 }
 
 /* EventList */
@@ -84,10 +94,7 @@ li {
   text-align: left;
 }
 
-.event-info-short {
-  margin-top: 1rem;
-}
-
+.event-info-short,
 .event-info-details {
   margin-top: 1rem;
 }
@@ -100,7 +107,7 @@ li {
   color: inherit;
   display: inline-block;
   font-weight: 700;
-  margin-top: 0.5rem;
+  margin-top: .5rem;
 }
 
 .event-google-link:hover {
@@ -121,7 +128,7 @@ li {
   color: #fff;
 }
 
-/* old */
+/* old - TODO: delete */
 .App-logo {
   height: 40vmin;
   pointer-events: none;

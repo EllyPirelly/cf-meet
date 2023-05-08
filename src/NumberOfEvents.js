@@ -18,6 +18,7 @@ class NumberOfEvents extends Component {
     // inputValue -> eventCount -> number
     this.props.updateEvents(undefined, inputValue);
 
+    // > 100 does not really make sense here, as events will be displayed anyhow (it's the logic), but was part of the task - delete later
     if (inputValue < 1 || inputValue > 100) {
       this.setState({
         infoText: 'Please select a number between 1 and 32.'

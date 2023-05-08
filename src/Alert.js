@@ -5,11 +5,13 @@ class Alert extends Component {
     super(props);
     // color can be null as this will be overwritten in children
     this.color = null;
+    this.fontWeight = 700;
   };
 
   getStyle = () => {
     return {
       color: this.color,
+      fontWeight: this.fontWeight,
     };
   };
 
@@ -27,15 +29,23 @@ class Alert extends Component {
 class InfoAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = 'blue';
+    this.color = '#32acfd';
   };
 };
 
 class ErrorAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = 'red';
+    this.color = '#ff0000';
   };
 };
 
-export { InfoAlert, ErrorAlert };
+// TODO: figure out when to implement a warning - maybe before offline mode?
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = '#efb65b';
+  };
+};
+
+export { InfoAlert, ErrorAlert, WarningAlert };
