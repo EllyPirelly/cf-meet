@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
   state = {
@@ -10,13 +11,40 @@ class CitySearch extends Component {
 
   handleInputChanged = (event) => {
     const value = event.target.value;
+    this.setState({
+      // query: suggestion,
+      suggestions: [],
+      showSuggestions: false,
+      infoText: ''
+    });
+
+    // before OOP
+    // this.setState({
+    //   showSuggestions: true
+    // });
+
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    this.setState({
-      query: value,
-      suggestions,
-    });
+
+    // before OOP
+    // this.setState({
+    //   query: value,
+    //   suggestions,
+    // });
+
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText: 'We cannot find the city you are looking for. Please try another city.',
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        infoText: ''
+      });
+    }
   };
 
   handleItemClicked = (suggestion) => {
@@ -32,6 +60,9 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="city-search-container">
+        {/* text will be passed via infoText state, see above */}
+        <InfoAlert text={this.state.infoText} />
+
         <input
           type="text"
           className="city"
