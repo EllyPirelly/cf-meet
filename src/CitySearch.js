@@ -12,26 +12,14 @@ class CitySearch extends Component {
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.setState({
-      // query: suggestion,
       suggestions: [],
       showSuggestions: false,
       infoText: ''
     });
 
-    // before OOP
-    // this.setState({
-    //   showSuggestions: true
-    // });
-
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-
-    // before OOP
-    // this.setState({
-    //   query: value,
-    //   suggestions,
-    // });
 
     if (suggestions.length === 0) {
       this.setState({
@@ -44,7 +32,7 @@ class CitySearch extends Component {
         suggestions,
         infoText: ''
       });
-    }
+    };
   };
 
   handleItemClicked = (suggestion) => {
@@ -59,14 +47,14 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className="city-search-container">
+      <div className='city-search-container'>
         {/* text will be passed via infoText state, see above */}
         <InfoAlert text={this.state.infoText} />
 
         <input
-          type="text"
-          className="city"
-          placeholder="Search for a City"
+          type='text'
+          className='city'
+          placeholder='Search for a City'
           value={this.state.query}
           onChange={this.handleInputChanged}
           // booleand state showSuggestions true
@@ -74,7 +62,7 @@ class CitySearch extends Component {
         />
 
         <ul
-          className="suggestions"
+          className='suggestions'
           // if showSuggestions is true, list is visible
           // if showSuggestions is false style won't have display none, and list will be displayed
           style={this.state.showSuggestions ? { display: 'block' } : { display: 'none' }}>
@@ -93,7 +81,7 @@ class CitySearch extends Component {
         </ul>
       </div>
     );
-  }
-}
+  };
+};
 
 export default CitySearch;

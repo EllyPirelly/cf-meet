@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Alert extends Component {
   constructor(props) {
     super(props);
-    // can be null as this will be overwritten in children
+    // color can be null as this will be overwritten in children
     this.color = null;
   };
 
@@ -15,8 +15,8 @@ class Alert extends Component {
 
   render() {
     return (
-      <div className="alert">
-        {/* text will be received from props, see for example CitySearch*/}
+      <div className='alert'>
+        {/* text will be received from props, see for example CitySearch, NumberOfEvents */}
         <p style={this.getStyle()}>{this.props.text}</p>
       </div>
     )
@@ -31,5 +31,11 @@ class InfoAlert extends Alert {
   };
 };
 
-// export default InfoAlert;
-export { InfoAlert };
+class ErrorAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = 'red';
+  };
+};
+
+export { InfoAlert, ErrorAlert };
