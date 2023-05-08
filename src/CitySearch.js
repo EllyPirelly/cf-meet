@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
   state = {
@@ -10,13 +11,28 @@ class CitySearch extends Component {
 
   handleInputChanged = (event) => {
     const value = event.target.value;
+    this.setState({
+      suggestions: [],
+      showSuggestions: false,
+      infoText: ''
+    });
+
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    this.setState({
-      query: value,
-      suggestions,
-    });
+
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText: 'Please try another city.',
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        infoText: ''
+      });
+    };
   };
 
   handleItemClicked = (suggestion) => {
@@ -31,19 +47,23 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className="city-search-container">
+      <div className='city-search-container'>
+        <h4>Choose your nearest city</h4>
         <input
-          type="text"
-          className="city"
-          placeholder="Search for a City"
+          type='text'
+          className='city'
+          placeholder='Search for a City'
           value={this.state.query}
           onChange={this.handleInputChanged}
           // booleand state showSuggestions true
           onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
+        {/* text will be passed via infoText state, see above */}
+        <InfoAlert text={this.state.infoText} />
+
 
         <ul
-          className="suggestions"
+          className='suggestions'
           // if showSuggestions is true, list is visible
           // if showSuggestions is false style won't have display none, and list will be displayed
           style={this.state.showSuggestions ? { display: 'block' } : { display: 'none' }}>
@@ -62,7 +82,7 @@ class CitySearch extends Component {
         </ul>
       </div>
     );
-  }
-}
+  };
+};
 
 export default CitySearch;
