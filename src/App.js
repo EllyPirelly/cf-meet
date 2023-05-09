@@ -3,34 +3,46 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { getEvents, extractLocations } from './api';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import './nprogress.css';
 import { WarningBanner } from './Banner';
+import WelcomeScreen from './WelcomeScreen';
 
 class App extends Component {
   state = {
-    // passed as events prop
     events: [],
-    // passed as locations prop
     locations: [],
+    // true: render WS, false: show other components, undefined: render an empty div until state is true or false
+    showWelcomeScreen: undefined,
     // passed as default amount prop
     eventCount: 32,
     infoText: '',
   };
 
   // load events when the app loads
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
     this.checkOffline();
 
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events,
-          locations: extractLocations(events)
-        });
-      }
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+
+    this.setState({
+      showWelcomeScreen: !(code || isTokenValid)
     });
+
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events,
+            locations: extractLocations(events)
+          });
+        }
+      });
+    };
   };
 
   componentWillUnmount() {
@@ -70,6 +82,8 @@ class App extends Component {
   };
 
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div className='App' />
+
     return (
       <div className='App'>
         <WarningBanner text={this.state.infoText} />
@@ -86,6 +100,12 @@ class App extends Component {
         <EventList
           // pass the state to EventList as a prop of events
           events={this.state.events}
+        />
+        {/* must be displayed at the bottom! */}
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          // function prop that calls getAccessToken()
+          getAccessToken={() => { getAccessToken() }}
         />
       </div>
     );

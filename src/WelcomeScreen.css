@@ -1,0 +1,59 @@
+.welcome-screen-container {
+  background-color: #304366;
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  padding: 1.5rem;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+}
+
+.welcome-text {
+  margin-top: 2rem;
+}
+
+.sign-in-btn {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #304366;
+  border-radius: 0.5rem;
+  color: #304366;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  padding: 0.75rem;
+  margin: 2rem auto 0;
+}
+
+.sign-in-btn:hover,
+.sign-in-btn:active {
+  background-color: #8faee8;
+  color: #fff;
+}
+
+.sign-in-btn:active {
+  box-shadow: inset 0 0.25rem 0.25rem rgb(8 8 8 / 0.5);
+}
+
+.google-icon {
+  height: auto;
+  margin-right: 0.5rem;
+  width: 2rem;
+}
+
+.privacy-policy {
+  color: #fff;
+  display: inline-block;
+  margin-top: 2rem;
+  font-weight: 700;
+}
+
+.privacy-policy:hover,
+.privacy-policy:active {
+  color: #ffa500;
+}
