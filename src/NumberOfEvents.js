@@ -33,15 +33,18 @@ class NumberOfEvents extends Component {
   render() {
     return (
       <div className='number-container'>
-        <h4>Number of Events</h4>
+        <div>Number of Events</div>
 
+        <label htmlFor='number' className='visually-hidden'>Number of Events</label>
         <input
           type='number'
+          id='number'
           className='eventnumber-amount'
           min='1'
           max='50'
           value={this.state.eventCount}
-          onChange={this.handleInputChanged} />
+          onChange={this.handleInputChanged}
+        />
 
         {/* text will be passed via infoText state, see above */}
         <ErrorAlert text={this.state.infoText} />

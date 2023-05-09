@@ -48,9 +48,12 @@ class CitySearch extends Component {
   render() {
     return (
       <div className='city-search-container'>
-        <h4>Choose your nearest city</h4>
+        <div>Choose your nearest city</div>
+
+        <label htmlFor='citysearch' className='visually-hidden'>City Search</label>
         <input
           type='text'
+          id='citysearch'
           className='city'
           placeholder='Search for a City'
           value={this.state.query}
@@ -60,7 +63,6 @@ class CitySearch extends Component {
         />
         {/* text will be passed via infoText state, see above */}
         <InfoAlert text={this.state.infoText} />
-
 
         <ul
           className='suggestions'

@@ -5,12 +5,14 @@ class Alert extends Component {
     super(props);
     // color can be null as this will be overwritten in children
     this.color = null;
+    this.fontSize = 14;
     this.fontWeight = 700;
   };
 
   getStyle = () => {
     return {
       color: this.color,
+      fontSize: this.fontSize,
       fontWeight: this.fontWeight,
     };
   };
