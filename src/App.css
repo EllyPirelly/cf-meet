@@ -45,10 +45,22 @@ li {
   height: 40px;
 }
 
-/* .number-container,
-.eventlist-container {
-  margin-top: 2rem;
-} */
+/* Banner */
+.banner-container {
+  align-items: center;
+  background-color: #efb65b;
+  color: #282828;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  /* padding: 8px; */
+}
+
 /* CitySearch */
 .city-search-container {
   margin-top: 2rem;
@@ -141,21 +153,4 @@ li {
   background-color: #32acfd;
   border: 1px solid #32acfd;
   color: #fff;
-}
-
-/* old - TODO: delete */
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }

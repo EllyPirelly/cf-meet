@@ -5,6 +5,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import './nprogress.css';
+import { WarningBanner } from './Banner';
 
 class App extends Component {
   state = {
@@ -14,11 +15,13 @@ class App extends Component {
     locations: [],
     // passed as default amount prop
     eventCount: 32,
+    infoText: '',
   };
 
   // load events when the app loads
   componentDidMount() {
     this.mounted = true;
+    this.checkOffline();
 
     getEvents().then((events) => {
       if (this.mounted) {
@@ -32,6 +35,16 @@ class App extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
+  };
+
+  // offline functionality
+  checkOffline = () => {
+    if (!navigator.onLine) {
+      // set state text to info text
+      this.setState({
+        infoText: 'You are currently offline. The events listed on the page might not be up to date.'
+      });
+    };
   };
 
   // HAS to be defined here b/c state is defined here, too
@@ -58,8 +71,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1 className="headline-primary">Meet App</h1>
+      <div className='App'>
+        <WarningBanner text={this.state.infoText} />
+        <h1 className='headline-primary'>Meet App</h1>
         <CitySearch
           // pass the state to CitySearch as a prop of locations
           locations={this.state.locations}

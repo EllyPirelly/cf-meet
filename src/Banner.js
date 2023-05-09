@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Alert extends Component {
+class Banner extends Component {
   constructor(props) {
     super(props);
     // color can be null as this will be overwritten in children
@@ -9,7 +9,7 @@ class Alert extends Component {
     this.fontWeight = 700;
   };
 
-  getStyle = () => {
+  getContextStyle = () => {
     return {
       color: this.color,
       fontSize: this.fontSize,
@@ -19,27 +19,21 @@ class Alert extends Component {
 
   render() {
     return (
-      <div className='alert'>
-        {/* text will be received from props, see for example CitySearch, NumberOfEvents */}
-        <p style={this.getStyle()}>{this.props.text}</p>
+      <div>
+        <div className='banner-container'>
+          <p className='banner-text' style={this.getContextStyle()}>{this.props.text}</p>
+        </div>
       </div>
     )
   };
 };
 
 // subclass
-class InfoAlert extends Alert {
+class WarningBanner extends Banner {
   constructor(props) {
     super(props);
-    this.color = '#32acfd';
+    this.color = '#282828';
   };
 };
 
-class ErrorAlert extends Alert {
-  constructor(props) {
-    super(props);
-    this.color = '#ff0000';
-  };
-};
-
-export { InfoAlert, ErrorAlert };
+export { WarningBanner };
