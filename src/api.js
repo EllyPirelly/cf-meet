@@ -2,10 +2,9 @@ import { mockData } from './mock-data';
 import axios from 'axios';
 import NProgress from 'nprogress';
 
-// function takes an events array, then uses map to create a new array with only locations
-// also removes all duplicates by creating another new array using the spread operator and spreading a Set
-// the Set will remove all duplicates from the array
-
+// events array, map to create a new array with only locations
+// creates new array using the spread operator and spreading a Set
+// Set removes all duplicates from the array
 export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
@@ -13,7 +12,7 @@ export const extractLocations = (events) => {
   return locations;
 };
 
-// check if token is valid
+// checks if accessToken is valid
 const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -24,7 +23,7 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
-// remove the code form the URL once accessed
+// removes code bit form URL once accessed
 const removeQuery = () => {
   // is there a path?
   if (window.history.pushState && window.location.pathname) {
@@ -39,7 +38,7 @@ const removeQuery = () => {
     // no: build URL without a path
     newurl = window.location.protocol + '//' + window.location.host;
     window.history.pushState('', '', newurl);
-  }
+  };
 };
 
 // gets called if authorization code is present
@@ -61,14 +60,23 @@ const getToken = async (code) => {
 };
 
 export const getEvents = async () => {
-  // NProgress: used to create and display progress bars at the top of the page
+  // creates and displays progress bars at the top of the page
   NProgress.start();
 
-  // to return mock data when on localhost
+  // returns mock data when on localhost
   if (window.location.href.startsWith('http://localhost')) {
     NProgress.done();
     return mockData;
-  }
+  };
+
+  // checks whether user is offline
+  // comes before getAccessToken as token is not needed if user is offline
+  if (!navigator.onLine) {
+    // stringified events list is "stored" in key lastEvents
+    const data = localStorage.getItem('lastEvents');
+    NProgress.done();
+    return data ? JSON.parse(data).events : [];;
+  };
 
   const token = await getAccessToken();
 
@@ -84,28 +92,29 @@ export const getEvents = async () => {
 
     if (result.data) {
       var locations = extractLocations(result.data.events);
+      // events is a list; localStorage can only store strings
       localStorage.setItem('lastEvents', JSON.stringify(result.data));
       localStorage.setItem('locations', JSON.stringify(locations));
     }
 
     NProgress.done();
     return result.data.events;
-  }
+  };
 };
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
-  // check for access token
+  // checks for access token
   if (!accessToken || tokenCheck.error) {
     await localStorage.removeItem('access_token');
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get('code');
 
-    // check for authorization code
+    // checks for authorization code
     if (!code) {
-      // redirect to Google Authorization screen
+      // redirects to Google Authorization screen
       const results = await axios.get(
         'https://oey35e3ybd.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
       );
@@ -115,7 +124,7 @@ export const getAccessToken = async () => {
     }
 
     return code && getToken(code);
-  }
+  };
 
   return accessToken;
 };
