@@ -1,3 +1,40 @@
+:root {
+  --black: #282828;
+  --white: #fff;
+  --beach: #f2e9e4;
+  --peachbeach: #c9ada7;
+  --chocolate: #7e6c68;
+  --violetsmoke: #9a8c98;
+  --lilacish: #6d597a;
+  --darkblue: #304366;
+  --orange: #ffa500;
+  --welcome-btn-hover: #8faee8;
+  --box-shadow-suggestions: rgba(40, 40, 40, 0.3) 0px 19px 38px, rgba(40, 40, 40, 0.22) 0px 15px 12px;
+  --box-shadow-container: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  --box-shadow-inset: inset 0 0.25rem 0.25rem rgb(8 8 8 / 0.5);
+}
+
+/* pacifico-regular - latin */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/pacifico-v22-latin-regular.eot');
+  /* IE9 Compat Modes */
+  src: url('./fonts/pacifico-v22-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('./fonts/pacifico-v22-latin-regular.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('./fonts/pacifico-v22-latin-regular.woff') format('woff'),
+    /* Modern Browsers */
+    url('./fonts/pacifico-v22-latin-regular.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('./fonts/pacifico-v22-latin-regular.svg#Pacifico') format('svg');
+  /* Legacy iOS */
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,12 +42,11 @@
 }
 
 body {
-  background-color: #fff;
-  color: #282828;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: var(--beach);
+  color: var(--darkblue);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.2;
-  padding: 2rem;
   min-height: 100vh;
 }
 
@@ -18,7 +54,6 @@ li {
   list-style-type: none;
 }
 
-/* common */
 .visually-hidden {
   border-width: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
@@ -30,14 +65,11 @@ li {
   width: 1px !important;
 }
 
-.headline-primary {
-  text-align: center;
-}
-
-.alert,
-.city,
-.eventnumber-amount {
-  margin-top: .5rem;
+.App {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 2rem;
+  width: 100%;
 }
 
 /* Alert */
@@ -48,8 +80,8 @@ li {
 /* Banner */
 .banner-container {
   align-items: center;
-  background-color: #efb65b;
-  color: #282828;
+  background-color: var(--orange);
+  color: var(--darkblue);
   display: flex;
   justify-content: center;
   left: 0;
@@ -58,7 +90,52 @@ li {
   top: 0;
   text-align: center;
   width: 100%;
-  /* padding: 8px; */
+}
+
+/* Header */
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.headline-primary {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.event-headline {
+  color: var(--darkblue);
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+}
+
+.event-details-headline {
+  color: var(--darkblue);
+}
+
+.meet-app-icon {
+  height: auto;
+  margin-right: .5rem;
+  width: 120px;
+}
+
+.alert,
+.city,
+.eventnumber-amount {
+  margin-top: .5rem;
+}
+
+.data-vis-wrapper {
+  text-align: center;
+}
+
+.recharts-responsive-container {
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-container);
+  margin-top: 1rem;
 }
 
 /* CitySearch */
@@ -69,33 +146,32 @@ li {
 }
 
 .city {
-  border: 1px solid #282828;
+  border: 2px solid var(--darkblue);
   border-radius: .5rem;
   padding: 8px 10px;
-  width: 260px;
+  width: 100%;
 }
 
 .suggestions {
-  box-shadow: rgba(40, 40, 40, 0.3) 0px 19px 38px, rgba(40, 40, 40, 0.22) 0px 15px 12px;
+  box-shadow: var(--box-shadow-suggestions);
   left: 0;
   margin: 0 auto;
   position: absolute;
   right: 0;
   top: 60px;
-  width: 260px;
   z-index: 2;
 }
 
 .suggestions > li {
-  background-color: #e5e5e5;
+  background-color: var(--peachbeach);
   cursor: default;
   padding: 8px 6px 8px 10px;
   text-align: left;
 }
 
 .suggestions > li:hover {
-  background-color: #737373;
-  color: #fff;
+  background-color: var(--chocolate);
+  color: var(--beach);
 }
 
 /* NumberOfEvents */
@@ -104,26 +180,30 @@ li {
 }
 
 .eventnumber-amount {
-  border: 1px solid #282828;
+  border: 2px solid var(--darkblue);
   border-radius: .5rem;
   padding: 8px 10px;
-  width: 70px;
+  width: 100%;
 }
 
 /* EventList */
 .eventlist-container li {
-  border: 1px solid #282828;
+  background-color: var(--peachbeach);
+  box-shadow: var(--box-shadow-container);
+  color: var(--beach);
+  margin-top: 1rem;
   padding: 1rem;
   text-align: left;
 }
 
-.eventlist-container li:not(:first-of-type) {
+.event-info-short,
+.event-info-details {
+  font-size: 1.25rem;
   margin-top: 1rem;
 }
 
-.event-info-short,
-.event-info-details {
-  margin-top: 1rem;
+.event-info-short {
+  font-weight: 700;
 }
 
 .event-description {
@@ -131,26 +211,63 @@ li {
 }
 
 .event-google-link {
-  color: inherit;
+  color: var(--darkblue);
   display: inline-block;
+  font-size: 1rem;
   font-weight: 700;
   margin-top: .5rem;
 }
 
 .event-google-link:hover {
-  color: #007bcd;
+  text-decoration: none;
 }
 
 .toggle-details {
-  border: 1px solid #282828;
+  background-color: var(--darkblue);
+  border: 2px solid var(--darkblue);
   border-radius: .5rem;
+  color: var(--beach);
   cursor: pointer;
+  font-weight: 700;
   margin-top: 1.25rem;
   padding: 8px 10px;
 }
 
 .toggle-details:hover {
-  background-color: #32acfd;
-  border: 1px solid #32acfd;
-  color: #fff;
+  background-color: var(--beach);
+  border: 2px solid var(--darkblue);
+  color: var(--darkblue);
+}
+
+@media screen and (min-width: 480px) {
+  .container-upper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .city,
+  .eventnumber-amount {
+    width: 280px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .data-vis-wrapper {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1rem;
+  }
+
+  .eventlist-container {
+    column-gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  .eventlist-container li {
+    width: calc(100%/2 - 0.5rem);
+  }
 }
