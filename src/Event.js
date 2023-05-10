@@ -31,7 +31,7 @@ class Event extends Component {
           {/* details */}
           {this.state.hide === false && (
             <div className='event-info-details'>
-              <h3>About the event</h3>
+              <h3 className='event-details-headline'>About the event</h3>
               <p className='event-description'>{event.description}</p>
               <a href={event.htmlLink} className='event-google-link' target='_blank' rel='noopener noreferrer'>See details on Google Calendar</a>
             </div>

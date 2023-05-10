@@ -1,12 +1,16 @@
 import React from 'react';
 import './WelcomeScreen.css';
+import meetLogo from './img/svg-m-white.svg';
 import googleLogo from './img/svg-google.svg';
 
 function WelcomeScreen(props) {
   return props.showWelcomeScreen ?
     (
       <div className='welcome-screen-container'>
-        <h1>Welcome to<br />Elle's Meet App</h1>
+        <header className='header-container'>
+          <img className='meet-app-icon' src={meetLogo} alt='Meet App Logo' />
+          <h1 className='headline-primary'>Meet App</h1>
+        </header>
 
         <div className='welcome-text'>Log-in to see upcoming events around the world for Full-Stack Web Developers</div>
 
