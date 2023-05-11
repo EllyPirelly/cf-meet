@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/cf-meet/static/css/main.aaa06d47.css",
-    "main.js": "/cf-meet/static/js/main.4bd525e7.js",
+    "main.css": "/cf-meet/static/css/main.ed03cd38.css",
+    "main.js": "/cf-meet/static/js/main.bb38ec5b.js",
     "static/js/787.79d8975f.chunk.js": "/cf-meet/static/js/787.79d8975f.chunk.js",
     "static/media/pacifico-v22-latin-regular.svg": "/cf-meet/static/media/pacifico-v22-latin-regular.d0dc93eee3c6fe13a60a.svg",
     "static/media/pacifico-v22-latin-regular.ttf": "/cf-meet/static/media/pacifico-v22-latin-regular.09c6a46b4fb94869237c.ttf",
@@ -13,12 +13,12 @@
     "static/media/svg-m-white.svg": "/cf-meet/static/media/svg-m-white.7d93c6ad34b7afbcf963889a22a85444.svg",
     "static/media/svg-google.svg": "/cf-meet/static/media/svg-google.1bbfc0fbf4604c3f00b9bd10089b6f97.svg",
     "index.html": "/cf-meet/index.html",
-    "main.aaa06d47.css.map": "/cf-meet/static/css/main.aaa06d47.css.map",
-    "main.4bd525e7.js.map": "/cf-meet/static/js/main.4bd525e7.js.map",
+    "main.ed03cd38.css.map": "/cf-meet/static/css/main.ed03cd38.css.map",
+    "main.bb38ec5b.js.map": "/cf-meet/static/js/main.bb38ec5b.js.map",
     "787.79d8975f.chunk.js.map": "/cf-meet/static/js/787.79d8975f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aaa06d47.css",
-    "static/js/main.4bd525e7.js"
+    "static/css/main.ed03cd38.css",
+    "static/js/main.bb38ec5b.js"
   ]
 }
