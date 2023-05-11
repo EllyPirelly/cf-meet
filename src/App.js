@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import './nprogress.css';
 import Header from './Header';
+import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import EventList from './EventList';
-import EventGenre from './EventGenre';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { WarningBanner } from './Banner';
+import EventGenre from './EventGenre';
 import WelcomeScreen from './WelcomeScreen';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -70,10 +70,8 @@ class App extends Component {
       // filter the events by each location
       // get the length of the resulting array
       const number = events.filter((event) => event.location === location).length;
-      // console.log(location);
       // only get the city (shift takes the first element)
       const city = location.split(', ').shift();
-      console.log(city);
 
       return { city, number };
     });
@@ -126,7 +124,7 @@ class App extends Component {
 
         <div className='data-vis-wrapper'>
           <EventGenre locations={locations} events={events} />
-          <ResponsiveContainer height={400} >
+          <ResponsiveContainer height={400}>
             <ScatterChart
               margin={{
                 top: 20,
