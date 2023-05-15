@@ -1,25 +1,35 @@
 # Meet App
 
 ### What is this about?
-A serverless, progressive web application with React using a TDD approach. The application has implemented authentication and authorization and uses the Google Calendar API to fetch upcoming events off of a specified calendar.
+A serverless, progressive web application with React, using a Test Driven Development approach. The application has implemented authentication and authorization and uses the Google Calendar API to fetch upcoming events off of a specified calendar.
 <br>
 This PWA has been built as a task for Achievement 4 in [Career Foundry's Full-Stack Web Development Program](https://careerfoundry.com/en/courses/become-a-web-developer/).
+<br>
+<br>
+**Heads-up:**<br>
+At time of writing the Meet App is not verified by Google, so Publishing Status is still in Testing state.
+This means that as a curious user you won't be able to see the Meet App unless I add you as a test user with your gmail address.
 
-[The App](#the-app) <br>
+![Welcome Screen](./src/img/screenshots/screenshot-welcome-screen.png) <br>
+![Desktop 1](./src/img/screenshots/screenshot-desktop1.png) <br>
+![Desktop 2](./src/img/screenshots/screenshot-desktop3.png) <br>
+
+[The Meet App](#the-meet-app) <br>
 [Tech](#tech) <br>
-[Testing Serverless Functions Locally](#testing-serverless-functions-locally)<br>
+[Testing Serverless Functions locally](#testing-serverless-functions-locally)<br>
 [TDD and BDD](#tdd-and-bdd) <br>
 [How to run tests](#how-to-run-tests) <br>
+[PWA and Service Worker](#pwa-and-service-worker) <br>
 [How to run this](#how-to-run-this) <br>
 
-## The App
+## The Meet App
 ### Features
 With the Meet APP, the user is able to
 - filter events by city name
 - specify the number of events being shown
 - show/hide event details
 - use the app when offline
-- add an app shortcut to the home screen
+- add an app shortcut to the home screen (mobile / desktop)
 - view a chart showing the number of upcoming events by city
 
 ## Tech
@@ -33,9 +43,10 @@ Initially a React 18 App was created, then downgraded to React 17, as this App m
 ### Technical Requirements
 The Meet App
 - must be a React application
-- must be build using TDD
+- must be build using Test Driven Development
 - must use the Google Calendar API and OAuth2 for authentication
-  - Google Calendar provided by CareerFoundry, will be populated with events
+  - Google Calendar "fullstackwebdev" provided by CareerFoundry, populated with events
+  - must have a Welcome Screen where user can log in with their Google credentials (or create those Google credentials)
 - must use AWS Lambda Serverless Functions for authorization
 - must be hosted on GitHub, deployed on GitHub Pages
 - must be responsive (320px ... 1920px)
@@ -43,10 +54,11 @@ The Meet App
 - must have a test coverage rate >= 90%
 - must be monitored using an online monitoring tool (atatus)
 - must support latest browser versions and IE11
-- must pass the [lighthouse check](https://developer.chrome.com/docs/lighthouse/overview/)
+- must have an alerts/warning for specified use cases implemented, using an object-oriented programming approach
+- must pass the [lighthouse check](https://developer.chrome.com/docs/lighthouse/overview/) for PWAs
+- must have valid Favicons, icons, `manifest.json` - those need customization for PWA
 - must work offline or in slow networks with the help of a service worker
 - must enable a user to install the app on desktop, add the app to their home screen on mobile
-- must have an alert system implemented, using an OOP approach
 - must make use of data visualization
 
 ### Main Languages, Libraries
@@ -56,11 +68,10 @@ The Meet App
 - React
 
 ### OAuth2
-- (protected) Google Calendar API, here, a calendar provided by CareerFoundry which is populated with events
+- (protected) Google Calendar API
 - read-only access
 - to retrieve data, client-side needs to be authorized
-- use of OAuth method/framework, to authenticate and authorize via secure third-party service
-- authentication and authorization is handled by Google
+- OAuth method/framework for authentication and authorization is handled by Google (as secure third-party service)
 
 ### Authorization server via AWS Lambda Serverless Functions (FaaS)
 - used for authorization instead of a traditional server
@@ -85,15 +96,18 @@ The Meet App
 - `http-server` to set up a local Node.js HTTP server
 
 #### Dependencies
-- `atatus-spa` application performance management tool; 14 day free trial used to track the Meet App
+- `atatus-spa` application performance management tool
+  - 14 day free trial used to track the Meet App
+  - is deactived again
 - `axios` to send requests from the React application to the authorization serverless endpoints
 - `nprogress` and pre-given styling https://raw.githubusercontent.com/rstacruz/nprogress/master/nprogress.css to create and display a progress bar at the top of the page
+- `recharts` for data visualization (ScatterChart and PieChart https://recharts.org/en-US)
 - `react` via `react-create-app` and all packages coming with it
 
 #### Dev Dependencies
 - `Enzyme` for Shallow Rendering
 - `@wojtekmaj/enzyme-adapter-react-17` Enzyme Adapter for React 17
-- `gh-pages` to host the project on GitHub Pages
+- `gh-pages` to "automatically" build and deploy to `gh-pages` branch, see script in `package.json`
 - `jest-cucumber` to use Gherkin-based test scenarios to drive acceptance tests
 - `puppeteer` to test and simulate user interactions in a browser
 
@@ -104,7 +118,7 @@ The Meet App
 Using a static site, to locally replicate the conditions under which the App will run and to test if all Serverless Functions that are already on AWS actually work. <br>
 Heads-up: on AWS check if you’re in the correct region, in this example `eu-central-1`, otherwise server won’t work. <br>
 
-![Static Site](./src/img/screenshots/screenshot-static-site.png)
+![Static Site](./src/img/screenshots/screenshot-static-site.png) <br>
 -	cd `static-site-test`
 - open `test-auth-server.html`
 - run `http-server`
@@ -120,9 +134,11 @@ Heads-up: on AWS check if you’re in the correct region, in this example `eu-ce
 Unit Testing | Integration Testing | User Acceptance Testing | End-to-End Testing | User Stories | Gherkin | Application Performance Monitoring
 
 - mock data, retrieved on Google Calendar for specific calendar, via filling out the right hand panel
-![Mock Data from Google](./src/img/screenshots/screenshot-where-mock-data.png)
+![Mock Data from Google](./src/img/screenshots/screenshot-where-mock-data.png) <br>
 
 ### User Stories / Scenarios
+User Story: <br>
+As a user, I should be able to filter events by city, so I can see the list of events that take place in that city.
 ```
 Feature: Filter events by city
 
@@ -143,6 +159,8 @@ When the user selects a city (e.g., “Berlin, Germany”) from the list
 Then their city should be changed to that city (i.e., “Berlin, Germany”)
 And the user should receive a list of upcoming events in that city
 ```
+User Story: <br>
+As a user, I should be able to toggle event details, so I can either see a summarized event detail or en elaborate event detail
 ```
 Feature: Toggle between showing or hiding details of one event
 
@@ -163,6 +181,8 @@ Given an event element is expanded and has been showing event element details
 When the user clicks the toggle button
 Then the expanded event element should collapse.
 ```
+User Story: <br>
+As a user, I should be able to specify the number of events shown, so I can narrow down or extend the number of shown events.
 ```
 Feature: Specify number of events
 
@@ -209,10 +229,10 @@ Then the user should only see the number of events they specified.
 	- will automatically download the most recent, compatible version of Chromium
 
 ### Application Performance Monitoring
-- atatus for error and performance tracking, etc.
-![atatus 1](./src/img/screenshots/screenshot-atatus1.png)
-![atatus 2](./src/img/screenshots/screenshot-atatus2.png)
-![atatus 3](./src/img/screenshots/screenshot-atatus3.png)
+- atatus for error and performance tracking, etc., see examples below
+![atatus 1](./src/img/screenshots/screenshot-atatus1.png) <br>
+![atatus 2](./src/img/screenshots/screenshot-atatus2.png) <br>
+![atatus 3](./src/img/screenshots/screenshot-atatus3.png) <br>
 
 ## How to run tests
 Start the project
@@ -222,6 +242,26 @@ Run all three of the following tests, they display info differently, all of them
 - run `npm run test`
 - run `npm test -- --coverage`
 - run `npx majestic`
+
+## PWA Service Worker
+- precondition for PWA, to enable offline use by way of showing user the same list of events loaded the previous time they launched the app, cached in `localStorage`
+- registered via `serviceWorkerRegistration.register();` in `index.js`
+- how to toggle a service worker test in Dev Tools
+![service worker 1](./src/img/screenshots/screenshot-service-worker1.png) <br>
+![service worker 2](./src/img/screenshots/screenshot-service-worker2.png) <br>
+- `navigator.onLine` API is used to detect if user is online or not
+
+### PWA - Desktop
+Install?
+![PWA Desktop 1](./src/img/screenshots/screenshot-pwa-desktop-install.png) <br>
+After install - Desktop App
+![PWA Desktop 2](./src/img/screenshots/screenshot-pwa-desktop1.png) <br>
+Icon on Desktop
+![PWA Desktop 3](./src/img/screenshots/screenshot-pwa-icon-on-desktop.png) <br>
+
+### PWA - Mobile
+![PWA Mobile 1](./src/img/screenshots/screenshot-pwa-mobile1.png) <br>
+![PWA Mobile 2](./src/img/screenshots/screenshot-pwa-mobile2.png) <br>
 
 ## How to run this?
 - clone the repo
