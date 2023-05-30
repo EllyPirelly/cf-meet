@@ -1,9 +1,9 @@
 # Meet App
 
 ### What is this about?
-A serverless, progressive web application with React, using a Test Driven Development approach. The application has implemented authentication and authorization and uses the Google Calendar API to fetch upcoming events off of a specified calendar.
+A serverless, progressive web application in React, using the Google Calendar API to fetch and display upcoming events off of a specified calendar. OAuth method/framework for authentication and authorization is handled by Google as secure 3rd party service. Serverless functions are hosted on AWS.
 <br>
-This PWA has been built as a task for Achievement 4 in [Career Foundry's Full-Stack Web Development Program](https://careerfoundry.com/en/courses/become-a-web-developer/).
+This PWA has been built with a Test Driven Development approach as a task for Achievement 4 in [Career Foundry's Full-Stack Web Development Program](https://careerfoundry.com/en/courses/become-a-web-developer/).
 <br>
 <br>
 **Heads-up:**<br>
@@ -29,7 +29,7 @@ With the Meet APP, the user is able to
 - specify the number of events being shown
 - show/hide event details
 - use the app when offline
-- add an app shortcut to the home screen (mobile / desktop)
+- add an app alias to the home screen (mobile / desktop)
 - view a chart showing the number of upcoming events by city
 
 ## Tech
@@ -38,21 +38,22 @@ With the Meet APP, the user is able to
 - Backend (Server Logic): Node.js, Express, AWS Lambda Serverless Functions (FaaS)
 - Backend (Database): Google Calendar API
 
-Initially a React 18 App was created, then downgraded to React 17, as this App must have been tested with Enzyme - at time of writing supported Enzyme Adapter is only available for React 17.
+Initially a React 18 App was created, then downgraded to React 17, as this App must have been tested with Enzyme - at time of writing supported Enzyme Adapter is only available for React 17 and there won't be any to support 18 or newer. <br>
+[See also this article by the creator himself](https://dev.to/wojtekmaj/enzyme-is-dead-now-what-ekl)
 
 ### Technical Requirements
 The Meet App
 - must be a React application
 - must be build using Test Driven Development
-- must use the Google Calendar API and OAuth2 for authentication
+- must use the [Google Calendar API](https://developers.google.com/calendar/api/guides/overview) and OAuth2 for authentication
   - Google Calendar "fullstackwebdev" provided by CareerFoundry, populated with events
   - must have a Welcome Screen where user can log in with their Google credentials (or create those Google credentials)
-- must use AWS Lambda Serverless Functions for authorization
+- must use [AWS Lambda Serverless Functions](https://aws.amazon.com/lambda/) for authorization
 - must be hosted on GitHub, deployed on GitHub Pages
 - must be responsive (320px ... 1920px)
 - must use React Axios and async/await
 - must have a test coverage rate >= 90%
-- must be monitored using an online monitoring tool (atatus)
+- must be monitored using an online monitoring tool ([atatus](https://www.atatus.com/))
 - must support latest browser versions and IE11
 - must have an alerts/warning for specified use cases implemented, using an object-oriented programming approach
 - must pass the [lighthouse check](https://developer.chrome.com/docs/lighthouse/overview/) for PWAs
@@ -62,10 +63,11 @@ The Meet App
 - must make use of data visualization
 
 ### Main Languages, Libraries
+- React
+  - JSX
+  - JavaScript
 - HTML
 - CSS
-- JavaScript
-- React
 
 ### OAuth2
 - (protected) Google Calendar API
